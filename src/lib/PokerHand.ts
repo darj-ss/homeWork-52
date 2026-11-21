@@ -24,9 +24,18 @@ class PokerHand {
         const ranks = Object.values(rankCounters);
         const pairsCounter = ranks.filter(c => c === 2).length;
 
-        if (pairsCounter === 1) { combination += 'one pair ' }
+        if (ranks.includes(3)) {
+            combination += 'three of a kind ';
+        }
+        else if (pairsCounter === 1) { combination += 'one pair ' }
         else if (pairsCounter === 2) { combination += 'two pair ' }
-
+        else if (this.currentCards.every((c) => {
+            return this.currentCards[0].suit === c.suit;
+        })) {
+            combination += 'flush ';
+        } else {
+            combination = 'high card ';
+        }
         console.log(combination);
         return combination;
     }
