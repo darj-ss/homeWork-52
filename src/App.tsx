@@ -2,13 +2,20 @@ import './App.css'
 import CardDeck from "./lib/CardDeck.ts";
 import Card from "./lib/Card.ts";
 import CardEl from './Card/Card.tsx';
+import PokerHand from "./lib/PokerHand.ts";
 import {useState} from "react";
 
 function App() {
     const [cards, setCards] = useState<Card[]>([]);
-    const cardDeck = new CardDeck();
+
     const dealCards = () => {
-        setCards(cardDeck.getCards(5));
+        const cardDeck = new CardDeck();
+
+        const randomDeck = cardDeck.getCards(5);
+        setCards(randomDeck);
+
+        const pokerHand = new PokerHand(randomDeck);
+        pokerHand.getOutCome();
     };
 
   return (
