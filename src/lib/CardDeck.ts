@@ -8,7 +8,7 @@ class CardDeck {
     constructor() {
         for (let i = 0; i < this.suites.length; i++) {
             for (let j = 0; j < this.ranks.length; j++) {
-                const card = new Card(this.suites[i], this.ranks[j]);
+                const card = new Card(this.ranks[j], this.suites[i]);
                 this.cardDeck.push(card);
             }
         }

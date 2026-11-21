@@ -1,3 +1,5 @@
+import './../cards.css';
+
 interface Props {
     rank: string;
     suit: string;
@@ -15,6 +17,7 @@ const Card = ({rank, suit}:Props) => {
     } else if (suit === 'spades') {
         suitSymbol = '♠';
     }
+    console.log(suit);
     return(
         <span className={cardClass}>
             <span className="rank">{rank}</span>
