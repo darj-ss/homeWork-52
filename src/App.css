@@ -1,0 +1,38 @@
+.btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    height: 48px;
+    padding: 12px 28px;
+    font-size: 15px;
+    font-weight: 500;
+    text-decoration: none;
+    color: #1a1a2e;
+    background: var(--white);
+    border: 2px solid #1a1a2e;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    margin-bottom: 50px;
+}
+
+.btn:hover {
+    background: #1a1a2e;
+    color: #ffffff;
+}
+
+.btn:focus-visible {
+    outline: 2px solid #1a1a2e;
+    outline-offset: 3px;
+}
+
+.btn:active {
+    transform: scale(0.96);
+}
+.main-container {
+    margin-top: 30px;
+}
+.poker-hand {
+    margin-top: 20px;
+    color: var(--white);
+}

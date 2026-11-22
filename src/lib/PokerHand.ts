@@ -36,7 +36,6 @@ class PokerHand {
         } else {
             combination = 'high card ';
         }
-        console.log(combination);
         return combination;
     }
 }

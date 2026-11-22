@@ -7,6 +7,7 @@ import {useState} from "react";
 
 function App() {
     const [cards, setCards] = useState<Card[]>([]);
+    const [outCome, setOutCome] = useState<string>('');
 
     const dealCards = () => {
         const cardDeck = new CardDeck();
@@ -15,19 +16,24 @@ function App() {
         setCards(randomDeck);
 
         const pokerHand = new PokerHand(randomDeck);
-        pokerHand.getOutCome();
+        setOutCome(pokerHand.getOutCome());
     };
 
   return (
     <>
-      <button type="button" id="deal-cards" onClick={dealCards}>Раздать карты</button>
-        {(cards.length !== 0 &&
-            <div className = "playingCards faceImages">
-                {cards.map((card) => (
-                    <CardEl suit={card.suit} rank={card.rank} key={`${card.suit}-${card.rank}`}/>
-                ))}
-            </div>
+        <div className="main-container">
+            <h1>Видео-покер</h1>
+            <button className="btn" type="button" id="deal-cards" onClick={dealCards}>Раздать карты</button>
+            {(cards.length !== 0 &&
+                <div className = "playingCards faceImages">
+                    {cards.map((card) => (
+                        <CardEl suit={card.suit} rank={card.rank} key={`${card.suit}-${card.rank}`}/>
+                    ))}
+                    <p className="poker-hand">{outCome}</p>
+                </div>
             )}
+        </div>
+
     </>
   )
 }
