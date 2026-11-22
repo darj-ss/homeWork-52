@@ -8,8 +8,6 @@ class PokerHand {
     }
     getOutCome(): string {
         let combination: string = '';
-        //let pairsCounter ;
-        //let suitCounter = 0;
 
         const rankCounters: Record<string, number> = {};
 
