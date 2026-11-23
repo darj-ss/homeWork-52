@@ -2,6 +2,7 @@ import Card from './Card';
 
 class PokerHand {
     public currentCards: Card[] = [];
+    private royalCards: string[] = ['10', 'J', 'Q', 'K', 'A'];
 
     constructor(currentCards: Card[]) {
         this.currentCards = currentCards;
@@ -29,14 +30,14 @@ class PokerHand {
         else if (ranks.includes(3)) { combination += 'three of a kind ' }
         else if (pairsCounter === 1) { combination += 'one pair ' }
         else if (pairsCounter === 2) { combination += 'two pair ' }
+        else if (this.currentCards.every((c) => c.suit === this.currentCards[0].suit)
+            && this.royalCards.every((r) => {
+                return this.currentCards.some((card) => card.rank === r);
+            })) { combination += 'royal flush ' }
         else if (this.currentCards.every((c) => {
             return this.currentCards[0].suit === c.suit;
-        })) {
-            combination += 'flush ';
-        } 
-        else {
-            combination = 'high card ';
-        }
+        })) { combination += 'flush ' }
+        else { combination = 'high card ' }
         return combination;
     }
 }
