@@ -18,7 +18,7 @@ function App() {
         const randomDeck = cardDeck.getCards(5);
         setCards(randomDeck);
 
-        const pokerHand = new PokerHand(randomDeck);
+        const pokerHand = new PokerHand(randomDeck, cardDeck);
         setOutCome(pokerHand.getOutCome());
 
         setSelectedCards([]);
@@ -36,7 +36,7 @@ function App() {
         if (selectedCards.length === 0) return;
         if (cardDeck) {
             if (cardDeck.cardDeck.length < selectedCards.length) {
-                alert('В текущей колоде не хватает карт для замены!');
+                alert('Not enough cards in the deck!');
                 return;
             }
             const newCards = cards.map((c: Card) => {
@@ -47,7 +47,7 @@ function App() {
             if (newCards.length !== 0) {
                 setCards(newCards);
 
-                const newPokerHand = new PokerHand(newCards);
+                const newPokerHand = new PokerHand(newCards, cardDeck);
                 setOutCome(newPokerHand.getOutCome());
 
                 setSelectedCards([]);
@@ -60,24 +60,31 @@ function App() {
     <>
         <div className="main-container">
             <h1>Video-poker</h1>
-            <button className="btn" type="button" id="deal-cards" onClick={dealCards}>Deal cards</button>
+            <button className="btn"
+                    type="button"
+                    id="deal-cards"
+                    onClick={dealCards}>Deal cards</button>
             {(cards.length !== 0 &&
                 <div className = "playingCards faceImages">
                     <div className = "cards-wrap">
                         {cards.map((card) => (
                             <div key={`${card.suit}-${card.rank}`}>
-                                <input type="checkbox" onChange={(e) => handleChange(card, e.target.checked)}/>
+                                <input type="checkbox"
+                                       onChange={(e) => handleChange(card, e.target.checked)}
+                                       checked={selectedCards.includes(card)}/>
                                 <CardEl suit={card.suit} rank={card.rank} />
                             </div>
                         ))}
                     </div>
 
                     <p className="poker-hand">{outCome}</p>
-                    <button className="btn" type="button" onClick={replaceCards}>Change cards</button>
+                    <button className="btn"
+                            type="button"
+                            onClick={replaceCards}>Change cards
+                    </button>
                 </div>
             )}
         </div>
-
     </>
   )
 }

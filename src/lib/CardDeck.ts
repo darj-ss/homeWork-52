@@ -26,5 +26,8 @@ class CardDeck {
         }
         return cardsArr;
     }
+    getRankIndex(rank: string): number {
+        return this.ranks.indexOf(rank);
+    }
 }
 export default CardDeck;

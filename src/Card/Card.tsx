@@ -5,7 +5,9 @@ interface Props {
 
 const Card = ({rank, suit}:Props) => {
     const cardClass = `card rank-${rank.toLocaleLowerCase()} ${suit.toLocaleLowerCase()}`;
+
     let suitSymbol = '';
+
     if (suit === 'diams') {
         suitSymbol = '♦';
     } else if (suit === 'hearts') {
