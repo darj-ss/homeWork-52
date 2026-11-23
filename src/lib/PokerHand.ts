@@ -22,16 +22,19 @@ class PokerHand {
         const ranks = Object.values(rankCounters);
         const pairsCounter = ranks.filter(c => c === 2).length;
 
-        if (ranks.includes(3)) {
-            combination += 'three of a kind ';
+        if (ranks.includes(4)) { combination += 'four of a kind ' }
+        else if (ranks.includes(3) && ranks.includes(2)) {
+            combination += 'full house ';
         }
+        else if (ranks.includes(3)) { combination += 'three of a kind ' }
         else if (pairsCounter === 1) { combination += 'one pair ' }
         else if (pairsCounter === 2) { combination += 'two pair ' }
         else if (this.currentCards.every((c) => {
             return this.currentCards[0].suit === c.suit;
         })) {
             combination += 'flush ';
-        } else {
+        } 
+        else {
             combination = 'high card ';
         }
         return combination;
